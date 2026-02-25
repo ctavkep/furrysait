@@ -67,6 +67,13 @@
             height: auto;
             border-radius: 20px;
             image-rendering: -webkit-optimize-contrast;
+            margin-bottom: 15px;
+        }
+
+        .art-description {
+            font-size: 0.9em;
+            color: #ccc;
+            line-height: 1.4;
         }
 
         ::-webkit-scrollbar { width: 0; }
@@ -114,12 +121,49 @@
         <!-- Галерея -->
         <h2 class="text-4xl font-black mb-12 uppercase tracking-tighter">Наша коллекция артов</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl w-full">
-            <div class="glass-card p-4 photo-card"><img src="https://i.postimg.cc/Y0snrXMt/furry1.jpg" alt="Арт 1"></div>
-            <div class="glass-card p-4 photo-card"><img src="https://i.postimg.cc/d3xHsWw0/furry2.jpg" alt="Арт 2"></div>
-            <div class="glass-card p-4 photo-card"><img src="https://i.postimg.cc/7hWsHBw6/furry3.jpg" alt="Арт 3"></div>
-            <div class="glass-card p-4 photo-card"><img src="https://i.postimg.cc/4ySLf8s7/furry4.jpg" alt="Арт 4"></div>
-            <div class="glass-card p-4 photo-card"><img src="https://i.postimg.cc/C5QPhvSd/photo-2026-02-25-23-55-49.jpg" alt="Арт 5"></div>
-            <div class="glass-card p-4 photo-card"><img src="https://i.postimg.cc/8kKnmCW4/photofurryjpg.jpg" alt="Арт 6"></div>
+            
+            <!-- Арт 1 -->
+            <div class="glass-card p-5 photo-card">
+                <img src="https://i.postimg.cc/Y0snrXMt/furry1.jpg" alt="Арт 1">
+                <p class="art-description font-bold text-pink-200 mb-1">Снежный барс</p>
+                <p class="art-description">Очень пушистый и добрый житель нашего чата.</p>
+            </div>
+
+            <!-- Арт 2 -->
+            <div class="glass-card p-5 photo-card">
+                <img src="https://i.postimg.cc/d3xHsWw0/furry2.jpg" alt="Арт 2">
+                <p class="art-description font-bold text-pink-200 mb-1">Рыжий лис</p>
+                <p class="art-description">Хитрый, но очень дружелюбный и всегда поможет советом.</p>
+            </div>
+
+            <!-- Арт 3 -->
+            <div class="glass-card p-5 photo-card">
+                <img src="https://i.postimg.cc/7hWsHBw6/furry3.jpg" alt="Арт 3">
+                <p class="art-description font-bold text-pink-200 mb-1">Ночной волк</p>
+                <p class="art-description">Обожает ночные посиделки в нашем Telegram чате.</p>
+            </div>
+
+            <!-- Арт 4 -->
+            <div class="glass-card p-5 photo-card">
+                <img src="https://i.postimg.cc/4ySLf8s7/furry4.jpg" alt="Арт 4">
+                <p class="art-description font-bold text-pink-200 mb-1">Пушистая кошка</p>
+                <p class="art-description">Самая грациозная участница нашего сообщества.</p>
+            </div>
+
+            <!-- Арт 5 -->
+            <div class="glass-card p-5 photo-card">
+                <img src="https://i.postimg.cc/C5QPhvSd/photo-2026-02-25-23-55-49.jpg" alt="Арт 5">
+                <p class="art-description font-bold text-pink-200 mb-1">Звездный дракон</p>
+                <p class="art-description">Редкий гость, который приносит магию в наше общение.</p>
+            </div>
+
+            <!-- Арт 6 -->
+            <div class="glass-card p-5 photo-card">
+                <img src="https://i.postimg.cc/8kKnmCW4/photofurryjpg.jpg" alt="Арт 6">
+                <p class="art-description font-bold text-pink-200 mb-1">Главный маскот</p>
+                <p class="art-description">Тот самый пушистик, который встречает всех новичков.</p>
+            </div>
+
         </div>
 
         <footer class="mt-32 text-gray-600 text-[10px] uppercase font-black tracking-[0.5em]">
