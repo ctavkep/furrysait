@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Наш уютный уголок | Furry Page</title>
+    <style>
+        :root {
+            --primary-color: #8d6e63;
+            --accent-color: #d7ccc8;
+            --text-color: #5d4037;
+            --bg-gradient: linear-gradient(135deg, #fff9c4 0%, #f8bbd0 50%, #e1bee7 100%);
+        }
+
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Навигация */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.85em;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            color: #ad1457;
+        }
+
+        /* Шапка */
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin: 0;
+            color: #4e342e;
+            text-shadow: 3px 3px 0px rgba(255,255,255,0.5);
+        }
+
+        .avatar-main {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            object-fit: cover;
+        }
+
+        /* Секции контента */
+        .content-section {
+            background: rgba(255, 255, 255, 0.4);
+            padding: 40px;
+            border-radius: 40px;
+            max-width: 900px;
+            margin: 20px auto;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+
+        /* Кнопка чата и копирования */
+        .chat-box {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+        }
+
+        .copy-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 30px;
+            background: #24A1DE;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(36, 161, 222, 0.3);
+        }
+
+        .copy-btn:hover {
+            background: #1e88ba;
+            transform: scale(1.05);
+        }
+
+        /* Всплывающее уведомление */
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #4e342e;
+            color: #fff;
+            text-align: center;
+            border-radius: 50px;
+            padding: 16px;
+            position: fixed;
+            z-index: 2000;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        #toast.show {
+            visibility: visible;
+            animation: fadeInOut 2.5s;
+        }
+
+        @keyframes fadeInOut {
+            0% { bottom: 0; opacity: 0; }
+            20% { bottom: 30px; opacity: 1; }
+            80% { bottom: 30px; opacity: 1; }
+            100% { bottom: 0; opacity: 0; }
+        }
+
+        /* Галерея */
+        .gallery-title {
+            text-align: center;
+            margin: 60px 0 30px;
+            font-size: 2em;
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto 80px;
+        }
+
+        .photo-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            padding: 15px;
+            transition: transform 0.4s ease;
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            display: block;
+            image-rendering: -webkit-optimize-contrast;
+        }
+
+        footer {
+            padding: 60px 40px;
+            text-align: center;
+            font-size: 0.9em;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 2em; }
+            nav { gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#home">Главная</a>
+        <a onclick="copyLink()">Furry Chat</a>
+    </nav>
+
+    <header id="home">
+        <img src="https://i.postimg.cc/8kKnmCW4/photofurryjpg.jpg" alt="Аватар" class="avatar-main">
+        <h1>Привет, дорогой пользователь!</h1>
+        <p>Добро пожаловать в наш сборник артов с чата</p>
+    </header>
+
+    <section class="content-section">
+        <h2>Немного о нашем чате</h2>
+        <p>
+            Наш чат очень уютный, где все дружат друг с другом и всегда поддержат друг друга! ❤️
+        </p>
+    </section>
+
+    <section class="content-section" id="furry-chat">
+        <h2>Furry Chat Telegram</h2>
+        <p>Присоединяйся к нашему сообществу! Нажми на кнопку ниже, чтобы скопировать ссылку на чат:</p>
+        
+        <div class="chat-box">
+            <button class="copy-btn" onclick="copyLink()">
+                <span>📲 Копировать ссылку</span>
+            </button>
+        </div>
+        <p style="font-size: 0.8em; margin-top: 15px; opacity: 0.6;">Ссылка: https://t.me/fanasyyy</p>
+    </section>
+
+    <h2 class="gallery-title">Наша коллекция артов</h2>
+
+    <div class="gallery-container">
+        <div class="photo-card"><img src="https://i.postimg.cc/Y0snrXMt/furry1.jpg" alt="Арт 1"></div>
+        <div class="photo-card"><img src="https://i.postimg.cc/d3xHsWw0/furry2.jpg" alt="Арт 2"></div>
+        <div class="photo-card"><img src="https://i.postimg.cc/7hWsHBw6/furry3.jpg" alt="Арт 3"></div>
+        <div class="photo-card"><img src="https://i.postimg.cc/4ySLf8s7/furry4.jpg" alt="Арт 4"></div>
+        <div class="photo-card"><img src="https://i.postimg.cc/C5QPhvSd/photo-2026-02-25-23-55-49.jpg" alt="Арт 5"></div>
+        <div class="photo-card"><img src="https://i.postimg.cc/8kKnmCW4/photofurryjpg.jpg" alt="Арт 6"></div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Наш Уютный Сайт. Все права пушисты.</p>
+    </footer>
+
+    <div id="toast">Ссылка скопирована! 🐾</div>
+
+    <script>
+        function copyLink() {
+            const link = "https://t.me/fanasyyy";
+            const el = document.createElement('textarea');
+            el.value = link;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+
+            const toast = document.getElementById("toast");
+            toast.className = "show";
+            setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 2500);
+        }
+    </script>
+</body>
+</html>
