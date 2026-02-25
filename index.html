@@ -108,6 +108,22 @@
             transform: translateY(-2px);
         }
 
+        .profile-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.05);
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-avatar:hover {
+            transform: scale(1.05);
+            border-color: rgba(251, 207, 232, 0.4);
+        }
+
         #copy-notification {
             position: fixed;
             top: 30px;
@@ -148,8 +164,10 @@
 
     <main class="relative z-10 flex flex-col items-center px-6 pt-40 pb-20">
         
-        <!-- Заголовок -->
-        <header class="max-w-4xl w-full text-center mb-32">
+        <!-- Заголовок и Аватар -->
+        <header class="max-w-4xl w-full text-center mb-32 flex flex-col items-center">
+            <img src="https://i.postimg.cc/C5QPhvSd/photo-2026-02-25-23-55-49.jpg" alt="Avatar" class="profile-avatar">
+            
             <h1 class="text-6xl md:text-7xl font-black mb-8 tracking-tighter text-white leading-tight">
                 Уютный уголок <br><span class="text-pink-200/40">для своих</span>
             </h1>
