@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Наш уютный уголок | Furry Page</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --accent-color: #f8bbd0; 
-            --bg-dark: #0f0a0c;
+            --accent-pink: rgba(251, 207, 232, 0.4);
+            --bg-dark: #070708;
         }
 
         body {
@@ -22,152 +22,214 @@
             scroll-behavior: smooth;
         }
 
-        #bg-wrapper {
+        /* --- Анимированный фон --- */
+        #bg-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: linear-gradient(to bottom, #1a0f12, #050505);
+            background: radial-gradient(circle at center, #111116 0%, #070708 100%);
+            overflow: hidden;
         }
 
+        .blob {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(251, 207, 232, 0.08) 0%, rgba(139, 92, 246, 0.03) 50%, transparent 100%);
+            border-radius: 50%;
+            filter: blur(100px);
+            animation: move 25s infinite alternate ease-in-out;
+        }
+
+        .blob-1 { top: -15%; left: -5%; }
+        .blob-2 { bottom: -10%; right: -5%; animation-delay: -7s; }
+        .blob-3 { top: 30%; right: 20%; width: 400px; height: 400px; animation-duration: 18s; }
+
+        @keyframes move {
+            from { transform: translate(0, 0) scale(1) rotate(0deg); }
+            to { transform: translate(150px, 100px) scale(1.2) rotate(30deg); }
+        }
+
+        /* --- Темные Стеклянные Карточки --- */
         .glass-card {
-            background: rgba(25, 20, 22, 0.7);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(248, 187, 208, 0.1);
-            border-radius: 24px;
-            transition: all 0.4s ease;
+            background: rgba(20, 20, 25, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 32px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            color: #e0e0e0;
         }
 
         .glass-card:hover {
-            border-color: var(--accent-color);
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(248, 187, 208, 0.05);
-        }
-
-        .copy-notification {
-            position: fixed;
-            top: 25px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #f8bbd0;
-            color: #4e342e;
-            padding: 14px 28px;
-            border-radius: 50px;
-            font-weight: 900;
-            display: none;
-            z-index: 2000;
-            box-shadow: 0 10px 30px rgba(248, 187, 208, 0.3);
-            text-transform: uppercase;
+            transform: translateY(-10px);
+            background: rgba(30, 30, 35, 0.8);
+            border-color: rgba(251, 207, 232, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(251, 207, 232, 0.05);
         }
 
         .photo-card img {
             width: 100%;
             height: auto;
-            border-radius: 20px;
-            image-rendering: -webkit-optimize-contrast;
-            margin-bottom: 15px;
+            border-radius: 24px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
         }
 
-        .art-description {
-            font-size: 0.9em;
-            color: #ccc;
-            line-height: 1.4;
+        .card-stats {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 18px;
+            margin-top: auto;
         }
 
-        ::-webkit-scrollbar { width: 0; }
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+        }
+
+        .stat-label { color: #888; }
+        .stat-value { color: #fbcfe8; font-weight: 500; }
+
+        /* --- Декоративные элементы --- */
+        .btn-main {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .btn-main:hover {
+            background: #fbcfe8;
+            color: #111;
+            transform: translateY(-2px);
+        }
+
+        #copy-notification {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1a1a1f;
+            color: #fbcfe8;
+            padding: 12px 30px;
+            border-radius: 100px;
+            font-weight: 700;
+            display: none;
+            z-index: 1000;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            border: 1px solid rgba(251, 207, 232, 0.2);
+        }
+
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
     </style>
 </head>
 <body>
 
-    <div id="copy-notification" class="copy-notification">Ссылка скопирована! 🐾</div>
+    <div id="copy-notification">Ссылка скопирована! 🐾</div>
 
-    <div id="bg-wrapper"></div>
+    <div id="bg-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
 
     <!-- Навигация -->
-    <nav class="fixed top-0 w-full z-50 px-6 py-5 flex justify-between items-center bg-black/40 backdrop-blur-md border-b border-white/5">
-        <div class="text-2xl font-black tracking-tighter">FURRY<span class="text-pink-300">HUB</span></div>
-        <div class="flex items-center gap-6">
-            <a href="#home" class="text-sm font-bold hover:text-pink-300 transition">Главная</a>
-            <button onclick="copyLink()" class="text-sm font-bold text-pink-300 hover:opacity-70 transition uppercase tracking-widest">Furry Chat</button>
-        </div>
+    <nav class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center bg-black/30 backdrop-blur-md border-b border-white/5">
+        <div class="text-2xl font-black tracking-tighter text-white">FURRY<span class="text-pink-200/60">HUB</span></div>
+        <button onclick="copyLink()" class="btn-main text-white px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest">
+            Join Chat
+        </button>
     </nav>
 
-    <main class="relative min-h-screen flex flex-col items-center px-6 pt-32 pb-20 text-center">
-        <!-- Шапка -->
-        <div id="home" class="max-w-4xl w-full mb-20">
-            <img src="https://i.postimg.cc/8kKnmCW4/photofurryjpg.jpg" alt="Аватар" class="w-32 h-32 rounded-full border-4 border-pink-200/20 mx-auto mb-8 object-cover shadow-2xl">
-            <h1 class="text-5xl md:text-7xl font-black mb-6 tracking-tighter">
-                Привет, дорогой <br> пользователь!
+    <main class="relative z-10 flex flex-col items-center px-6 pt-40 pb-20">
+        
+        <!-- Заголовок -->
+        <header class="max-w-4xl w-full text-center mb-32">
+            <h1 class="text-6xl md:text-7xl font-black mb-8 tracking-tighter text-white leading-tight">
+                Уютный уголок <br><span class="text-pink-200/40">для своих</span>
             </h1>
-            <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10">
-                Добро пожаловать в наш сборник артов с чата. Листай ниже, чтобы увидеть красоту!
+            <p class="text-gray-500 text-lg md:text-xl mb-12 max-w-2xl mx-auto font-medium">
+                Здесь собраны арты нашего чата. Добро пожаловать в нашу галерею!
             </p>
-
-            <button onclick="copyLink()" class="bg-pink-200 text-pink-900 px-10 py-4 rounded-2xl font-black text-lg uppercase hover:scale-105 transition active:scale-95 shadow-lg">
-                📲 Вступить в Chat
+            <button onclick="copyLink()" class="btn-main text-white px-12 py-5 rounded-3xl font-black text-lg uppercase tracking-wider">
+                Вступить в чат 🐾
             </button>
-        </div>
+        </header>
 
-        <!-- О чате -->
-        <section class="glass-card p-10 max-w-3xl w-full mb-20">
-            <h2 class="text-2xl font-black mb-4 uppercase text-pink-200">Немного о нашем чате</h2>
-            <p class="text-gray-300 text-lg italic">
-                "Наш чат очень уютный, где все дружат друг с другом и всегда поддержат друг друга! ❤️"
+        <!-- Блок "О нас" -->
+        <section class="glass-card p-10 max-w-3xl w-full mb-32 text-center">
+            <h2 class="text-xl font-black mb-4 uppercase tracking-widest text-pink-200/50">О нашем чате</h2>
+            <p class="text-gray-400 text-lg italic leading-relaxed">
+                "Наш чат — это место, где каждый может быть собой. Мы поддерживаем друг друга, делимся творчеством и просто приятно проводим время. ❤️"
             </p>
         </section>
 
         <!-- Галерея -->
-        <h2 class="text-4xl font-black mb-12 uppercase tracking-tighter">Наша коллекция артов</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl w-full">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl w-full">
             
             <!-- Арт 1 -->
-            <div class="glass-card p-5 photo-card">
-                <img src="https://i.postimg.cc/Y0snrXMt/furry1.jpg" alt="Арт 1">
-                <p class="art-description font-bold text-pink-200 mb-1">Снежный барс</p>
-                <p class="art-description">Очень пушистый и добрый житель нашего чата.</p>
+            <div class="glass-card p-6 flex flex-col photo-card">
+                <img src="https://i.postimg.cc/d3xHsWw0/furry2.jpg" alt="Furry Art">
+                <div class="card-stats">
+                    <div class="stat-row"><span class="stat-label">Персонаж:</span><span class="stat-value">Лис-ковбой</span></div>
+                    <div class="stat-row"><span class="stat-label">Вайб:</span><span class="stat-value">Дикий запад 🌵</span></div>
+                </div>
             </div>
 
             <!-- Арт 2 -->
-            <div class="glass-card p-5 photo-card">
-                <img src="https://i.postimg.cc/d3xHsWw0/furry2.jpg" alt="Арт 2">
-                <p class="art-description font-bold text-pink-200 mb-1">Рыжий лис</p>
-                <p class="art-description">Хитрый, но очень дружелюбный и всегда поможет советом.</p>
+            <div class="glass-card p-6 flex flex-col photo-card">
+                <img src="https://i.postimg.cc/Y0snrXMt/furry1.jpg" alt="Furry Art">
+                <div class="card-stats">
+                    <div class="stat-row"><span class="stat-label">Особенность:</span><span class="stat-value">Зимний стиль</span></div>
+                    <div class="stat-row"><span class="stat-label">Тип:</span><span class="stat-value">Пушистый ❄️</span></div>
+                </div>
             </div>
 
             <!-- Арт 3 -->
-            <div class="glass-card p-5 photo-card">
-                <img src="https://i.postimg.cc/7hWsHBw6/furry3.jpg" alt="Арт 3">
-                <p class="art-description font-bold text-pink-200 mb-1">Ночной волк</p>
-                <p class="art-description">Обожает ночные посиделки в нашем Telegram чате.</p>
+            <div class="glass-card p-6 flex flex-col photo-card">
+                <img src="https://i.postimg.cc/7hWsHBw6/furry3.jpg" alt="Furry Art">
+                <div class="card-stats">
+                    <div class="stat-row"><span class="stat-label">Заметка:</span><span class="stat-value">Ночной страж</span></div>
+                    <div class="stat-row"><span class="stat-label">Настроение:</span><span class="stat-value">Таинственное 🌙</span></div>
+                </div>
             </div>
 
             <!-- Арт 4 -->
-            <div class="glass-card p-5 photo-card">
-                <img src="https://i.postimg.cc/4ySLf8s7/furry4.jpg" alt="Арт 4">
-                <p class="art-description font-bold text-pink-200 mb-1">Пушистая кошка</p>
-                <p class="art-description">Самая грациозная участница нашего сообщества.</p>
+            <div class="glass-card p-6 flex flex-col photo-card">
+                <img src="https://i.postimg.cc/4ySLf8s7/furry4.jpg" alt="Furry Art">
+                <div class="card-stats">
+                    <div class="stat-row"><span class="stat-label">Вид:</span><span class="stat-value">Лесной житель</span></div>
+                    <div class="stat-row"><span class="stat-label">Дружелюбие:</span><span class="stat-value">10/10 ❤️</span></div>
+                </div>
             </div>
 
             <!-- Арт 5 -->
-            <div class="glass-card p-5 photo-card">
-                <img src="https://i.postimg.cc/C5QPhvSd/photo-2026-02-25-23-55-49.jpg" alt="Арт 5">
-                <p class="art-description font-bold text-pink-200 mb-1">Звездный дракон</p>
-                <p class="art-description">Редкий гость, который приносит магию в наше общение.</p>
+            <div class="glass-card p-6 flex flex-col photo-card">
+                <img src="https://i.postimg.cc/C5QPhvSd/photo-2026-02-25-23-55-49.jpg" alt="Furry Art">
+                <div class="card-stats">
+                    <div class="stat-row"><span class="stat-label">Магия:</span><span class="stat-value">Звездный свет</span></div>
+                    <div class="stat-row"><span class="stat-label">Статус:</span><span class="stat-value">Редкий ✨</span></div>
+                </div>
             </div>
 
             <!-- Арт 6 -->
-            <div class="glass-card p-5 photo-card">
-                <img src="https://i.postimg.cc/8kKnmCW4/photofurryjpg.jpg" alt="Арт 6">
-                <p class="art-description font-bold text-pink-200 mb-1">Главный маскот</p>
-                <p class="art-description">Тот самый пушистик, который встречает всех новичков.</p>
+            <div class="glass-card p-6 flex flex-col photo-card">
+                <img src="https://i.postimg.cc/8kKnmCW4/photofurryjpg.jpg" alt="Furry Art">
+                <div class="card-stats">
+                    <div class="stat-row"><span class="stat-label">Имя:</span><span class="stat-value">Маскот</span></div>
+                    <div class="stat-row"><span class="stat-label">Любит:</span><span class="stat-value">Печеньки 🍪</span></div>
+                </div>
             </div>
 
         </div>
 
-        <footer class="mt-32 text-gray-600 text-[10px] uppercase font-black tracking-[0.5em]">
-            &copy; 2026 FURRY HUB — ВСЕ ПРАВА ПУШИСТЫ
+        <footer class="mt-40 text-white/10 text-[10px] uppercase font-bold tracking-[1em]">
+            FurryChat Вся пушистость защищена! &bull; 2026
         </footer>
     </main>
 
@@ -183,7 +245,7 @@
 
             const note = document.getElementById('copy-notification');
             note.style.display = 'block';
-            setTimeout(() => { note.style.display = 'none'; }, 2500);
+            setTimeout(() => { note.style.display = 'none'; }, 2000);
         }
     </script>
 </body>
