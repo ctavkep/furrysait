@@ -101,6 +101,62 @@
             transform: scale(1.05);
         }
 
+        /* Двойная кнопка-капсула */
+        .btn-split {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 9999px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Добавил плавность и эффект пружинки */
+            color: #fff;
+        }
+
+        .btn-split:hover {
+            background: rgba(251, 207, 232, 0.15); /* Полупрозрачный розовый вместо яркого залива */
+            transform: scale(1.12); /* Увеличил расширение при наведении */
+            border-color: rgba(251, 207, 232, 0.4);
+            box-shadow: 0 10px 30px -10px rgba(251, 207, 232, 0.3); /* Легкое свечение */
+        }
+
+        .btn-split-item {
+            padding: 1.25rem 1.5rem;
+            font-weight: 900;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            background: transparent;
+            border: none;
+            outline: none;
+            font-family: inherit;
+            transition: opacity 0.2s ease;
+        }
+
+        @media (min-width: 768px) {
+            .btn-split-item {
+                padding: 1.25rem 2.5rem;
+                font-size: 1.25rem;
+            }
+        }
+
+        .btn-split-item:hover {
+            opacity: 0.6;
+        }
+
+        .btn-split-divider {
+            width: 1px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.2);
+            transition: background 0.3s ease;
+        }
+
+        .btn-split:hover .btn-split-divider {
+            background: rgba(251, 207, 232, 0.4); /* Теперь линия тоже слегка розовая и полупрозрачная */
+        }
+
         /* Футер */
         .footer-text {
             color: rgba(255, 255, 255, 0.45);
@@ -181,7 +237,7 @@
         
         <!-- Шапка -->
         <header class="text-center mb-20 max-w-3xl flex flex-col items-center">
-            <img src="https://i.postimg.cc/KzKnyqdW/photo-2026-02-11-15-07-53.jpg" alt="Аватар" class="profile-avatar mb-10 reveal">
+            <img src="https://i.postimg.cc/C5QPhvSd/photo-2026-02-25-23-55-49.jpg" alt="Аватар" class="profile-avatar mb-10 reveal">
             <h1 class="hero-title text-5xl md:text-7xl font-black text-white mb-6 reveal">
                 Уютный уголок <br><span class="text-pink-200/40">для своих</span>
             </h1>
@@ -189,9 +245,11 @@
                 Пространство творчества, общения и пушистых хвостов.
             </p>
             
-            <button onclick="copyLink()" class="btn-main text-white px-12 py-5 rounded-full font-black text-xl uppercase tracking-widest reveal mb-10">
-                Вступить в чат 🐾
-            </button>
+            <div class="btn-split reveal mb-10">
+                <a href="https://t.me/fanasyyy" target="_blank" class="btn-split-item">Вступить</a>
+                <div class="btn-split-divider"></div>
+                <button onclick="copyLink()" class="btn-split-item">Скопировать</button>
+            </div>
         </header>
 
         <!-- Блок: О нашем чате -->
